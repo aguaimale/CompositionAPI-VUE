@@ -62,7 +62,7 @@ div {
 ul {
 
     width: 250px,
-    listStyle = none;
+    
   
 }
 

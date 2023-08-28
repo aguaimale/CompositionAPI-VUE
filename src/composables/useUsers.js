@@ -13,32 +13,24 @@ const useUsers = () =>{
 
     const incrementPage = () => {
         getUsers(currentPage.value + 1);
-
     }
 
     const decrementPage = () => {
         getUsers(currentPage.value - 1);
-
     }
     
     const getUsers = async (page = 1) => {
-
         if ( page <= 0 ) page = 1
-
         isLoading.value = true
-
         const { data } = await axios.get('https://reqres.in/api/users', { params: { page } })
-        
         if (data.data.length > 0) {
             users.value = data.data
             currentPage.value = page
             errorMensaje.value = null
         } 
-
         else if (currentPage.value > 0) {
             errorMensaje.value = 'No hay mas usuarios'
         }
-
         isLoading.value = false
     }
     getUsers()
