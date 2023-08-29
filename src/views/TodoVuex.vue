@@ -1,5 +1,5 @@
 <template >
-    <h1>Lista de tareas de Thanos</h1>
+    <h1>Lista de tareas de Thanos 🦹‍♂️ </h1>
     <h4> Tareas pendientes: {{ $store.state.todos.filter(t => !t.completed).length }} </h4>
     <hr>
     <button :class="{ 'active': currentTab === 'all' }" @click="currentTab = 'all'">
@@ -20,16 +20,45 @@
             </li>
         </ul>
     </div>
-    <hr>
+    <button @click="isOpen=true">Crear Nueva tarea</button>
+
+    <!-- Modal para crear nueva tarea -->
+    <modal v-if="isOpen"
+    @on:close="isOpen = false">
+        <template v-slot:header>
+           <h1>Nueva tarea</h1>
+           <hr>
+        </template>
+        
+        <template v-slot:body>
+            <br>
+            <form 
+            @submit.prevent=" createTodo(newTodoText) ; isOpen=false "
+            >
+                <input 
+                type="text"
+                placeholder="Nueva tarea"
+                v-model="newTodoText"
+                >
+                <br><br><br><br>
+                <button class="bModal"> Crear</button>
+            </form>
+        </template>
+
+    </modal>
+
 </template>
 
 <script>
 import useTodo from '@/composables/useTodo'
-
+import Modal from '@/components/Modal.vue'
+import {ref} from 'vue'
 export default {
-
+    components: { Modal },
     setup() {
-        const { currentTab, pending, all, completed ,getTodosByTab, toggleTodo } = useTodo()
+        const { currentTab, pending, all, completed, getTodosByTab,createTodo, toggleTodo } = useTodo()
+
+        
 
         return {
             currentTab,
@@ -38,6 +67,9 @@ export default {
             completed,
             getTodosByTab,
             toggleTodo,
+            createTodo,
+            isOpen: ref (false),
+            newTodoText: ref('')
         }
     }
 }
@@ -74,5 +106,8 @@ ul {
 
 .completed {
     text-decoration: line-through
+}
+.bModal{
+    width: 70%;
 }
 </style>
