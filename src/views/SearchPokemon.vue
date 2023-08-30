@@ -42,5 +42,7 @@ export default {
 }
 </script>
 <style scoped>
-    
+    input{
+     margin-bottom: 7px;
+    }
 </style>

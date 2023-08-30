@@ -1,7 +1,8 @@
 <template >
     <h1>Lista de tareas de Thanos 🦹‍♂️ </h1>
     <h4> Tareas pendientes: {{ $store.state.todos.filter(t => !t.completed).length }} </h4>
-    <hr>
+    
+   <div class="buttons">
     <button :class="{ 'active': currentTab === 'all' }" @click="currentTab = 'all'">
         Todos
     </button>
@@ -11,7 +12,8 @@
     <button :class="{ 'active': currentTab === 'completed' }" @click="currentTab = 'completed'">
         Completado
     </button>
-    <hr>
+   </div>
+   
     <div>
         <ul>
             <li v-for=" todo in getTodosByTab " :key="todo.id" :class="{ 'completed': todo.completed }"

@@ -8,7 +8,7 @@
     <router-link :to="{ name: 'todo' }"> Tareas</router-link> |
     <router-link :to="{ name: 'slots' }">Slots</router-link> 
   </nav>
-  <hr>
+  
   <router-view v-slot="{ Component, route }">
     <keep-alive>
       <component :is="Component" :key="route.name"/>
@@ -16,15 +16,21 @@
   </router-view>
 </template>
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 nav {
   padding: 30px;
+  border-bottom: 1px solid #2c3e50 ;
 
 }
 nav a {

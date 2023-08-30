@@ -2,9 +2,11 @@
    <h1> Counter View</h1>
 
    <h2>{{ counter }}</h2>
-   
-   <button @click="aumentar">+1</button>
-   <button @click="decrementar">-1</button>
+   <div  class="buttonsDiv">
+
+      <button @click="aumentar">+1</button>
+      <button @click="decrementar">-1</button>
+   </div>
 </template>
 
 <script>
@@ -31,6 +33,8 @@ export default {
 </script>
 
 <style>
-
+button{
+   margin:3px;
+}
 
 </style>
